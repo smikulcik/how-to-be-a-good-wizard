@@ -1,0 +1,388 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+  <title>How to Be a Good Wizard</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link href="https://fonts.googleapis.com/css2?family=Cinzel:wght@400;600;700&family=EB+Garamond:ital,wght@0,400;0,500;1,400;1,500&display=swap" rel="stylesheet" />
+  <style>
+    *, *::before, *::after {
+      box-sizing: border-box;
+      margin: 0;
+      padding: 0;
+    }
+
+    :root {
+      --parchment:     #f5edd8;
+      --parchment-mid: #ede0c4;
+      --parchment-dark:#d9c9a8;
+      --ink:           #1e120a;
+      --ink-mid:       #3b2412;
+      --ink-light:     #5c3d22;
+      --accent:        #7a3b1e;
+      --rule:          #b89a6a;
+    }
+
+    html {
+      scroll-behavior: smooth;
+    }
+
+    body {
+      background-color: var(--parchment);
+      background-image:
+        radial-gradient(ellipse at 20% 10%, rgba(180,140,80,0.12) 0%, transparent 60%),
+        radial-gradient(ellipse at 80% 90%, rgba(120,80,30,0.10) 0%, transparent 60%);
+      color: var(--ink);
+      font-family: 'EB Garamond', Georgia, serif;
+      font-size: 1.15rem;
+      line-height: 1.85;
+      min-height: 100vh;
+    }
+
+    /* ── Page wrapper ── */
+    .page {
+      max-width: 720px;
+      margin: 0 auto;
+      padding: 4rem 2rem 6rem;
+    }
+
+    /* ── Decorative border ── */
+    .manuscript {
+      border: 2px solid var(--rule);
+      border-radius: 2px;
+      padding: 3rem 3.5rem;
+      box-shadow:
+        0 0 0 6px var(--parchment),
+        0 0 0 8px var(--parchment-dark),
+        4px 6px 24px rgba(60,30,10,0.18);
+      position: relative;
+    }
+
+    .manuscript::before,
+    .manuscript::after {
+      content: '✦';
+      position: absolute;
+      font-size: 1.1rem;
+      color: var(--rule);
+    }
+    .manuscript::before { top: 0.6rem; left: 0.8rem; }
+    .manuscript::after  { bottom: 0.6rem; right: 0.8rem; }
+
+    /* ── Title ── */
+    .title-block {
+      text-align: center;
+      margin-bottom: 2.5rem;
+    }
+
+    .title-block h1 {
+      font-family: 'Cinzel', 'Times New Roman', serif;
+      font-size: 2.1rem;
+      font-weight: 700;
+      color: var(--ink);
+      letter-spacing: 0.04em;
+      line-height: 1.3;
+      text-transform: uppercase;
+    }
+
+    .title-ornament {
+      display: block;
+      margin: 0.9rem auto 0;
+      color: var(--rule);
+      font-size: 1.3rem;
+      letter-spacing: 0.5em;
+    }
+
+    /* ── Horizontal rule ── */
+    .rule {
+      border: none;
+      border-top: 1px solid var(--rule);
+      margin: 2rem 0;
+      position: relative;
+    }
+
+    .rule::before {
+      content: '❧';
+      position: absolute;
+      top: 50%;
+      left: 50%;
+      transform: translate(-50%, -50%);
+      background: var(--parchment);
+      padding: 0 0.6rem;
+      color: var(--rule);
+      font-size: 1.1rem;
+    }
+
+    /* ── Preamble prose ── */
+    .preamble p {
+      margin-bottom: 1.1rem;
+      color: var(--ink-mid);
+    }
+
+    .preamble p:last-child {
+      margin-bottom: 0;
+    }
+
+    .preamble .warning {
+      font-style: italic;
+      font-weight: 500;
+      color: var(--ink);
+    }
+
+    /* ── Section heading ── */
+    .section-title {
+      font-family: 'Cinzel', 'Times New Roman', serif;
+      font-size: 1.35rem;
+      font-weight: 600;
+      text-align: center;
+      color: var(--ink);
+      letter-spacing: 0.06em;
+      text-transform: uppercase;
+      margin: 2.5rem 0 2rem;
+    }
+
+    /* ── Proverb cards ── */
+    .proverbs {
+      display: flex;
+      flex-direction: column;
+      gap: 2rem;
+    }
+
+    .proverb {
+      display: grid;
+      grid-template-columns: 2.8rem 1fr;
+      gap: 0 1rem;
+      align-items: start;
+    }
+
+    .proverb-number {
+      font-family: 'Cinzel', serif;
+      font-size: 1.5rem;
+      font-weight: 700;
+      color: var(--rule);
+      line-height: 1.2;
+      padding-top: 0.1rem;
+      text-align: right;
+    }
+
+    .proverb-body {}
+
+    .proverb-title {
+      font-family: 'Cinzel', serif;
+      font-size: 1.05rem;
+      font-weight: 600;
+      color: var(--accent);
+      letter-spacing: 0.03em;
+      margin-bottom: 0.35rem;
+      display: block;
+    }
+
+    .proverb-text {
+      color: var(--ink-mid);
+      font-style: italic;
+    }
+
+    /* ── Closing stanza ── */
+    .closing {
+      margin-top: 2.5rem;
+      text-align: center;
+    }
+
+    .closing p {
+      color: var(--ink-mid);
+      margin-bottom: 0.8rem;
+    }
+
+    .closing .final-lines {
+      font-style: italic;
+      font-size: 1.1rem;
+      color: var(--ink);
+      line-height: 2;
+      margin-top: 1.5rem;
+    }
+
+    .closing .final-lines strong {
+      font-weight: 500;
+      font-style: normal;
+      display: block;
+      font-family: 'Cinzel', serif;
+      font-size: 0.95rem;
+      letter-spacing: 0.04em;
+      color: var(--accent);
+      margin-top: 0.5rem;
+    }
+
+    /* ── Footer ── */
+    footer {
+      text-align: center;
+      margin-top: 3rem;
+      font-family: 'Cinzel', serif;
+      font-size: 0.75rem;
+      letter-spacing: 0.12em;
+      color: var(--rule);
+      text-transform: uppercase;
+    }
+
+    /* ── Responsive ── */
+    @media (max-width: 600px) {
+      .manuscript {
+        padding: 2rem 1.5rem;
+      }
+
+      .title-block h1 {
+        font-size: 1.55rem;
+      }
+
+      .proverb {
+        grid-template-columns: 2.2rem 1fr;
+        gap: 0 0.7rem;
+      }
+
+      .proverb-number {
+        font-size: 1.2rem;
+      }
+    }
+  </style>
+</head>
+<body>
+  <div class="page">
+    <div class="manuscript">
+
+      <!-- Title -->
+      <div class="title-block">
+        <h1>How to Be a Good Wizard</h1>
+        <span class="title-ornament">— ✦ —</span>
+      </div>
+
+      <hr class="rule" />
+
+      <!-- Preamble -->
+      <section class="preamble">
+        <p>We live in a time when words become reality. A careful prompt can build entire systems that touch so many people.</p>
+        <p>This is not ordinary craftsmanship. It is closer to magic than most engineers are comfortable admitting.</p>
+        <p>Wizards of lore understood something we are relearning: power is never neutral, tools amplify intent, and wisdom must grow faster than capability, lest we all face the consequences. They encoded these truths not as rules, but as idioms and phrases, proverbs and maxims. Behind each memorable adage sits painful experiences of past failures, disastrous mistakes, and accumulated wisdom.</p>
+        <p>What follows is not rules, but rather a living set of proverbs. If they serve us, let them persist and grow. Should we outgrow them, may these words fade into memory.</p>
+        <p>Each phrase meant to be spoken aloud: in design reviews, in incidents, in moments of doubt. Argue with them. Rewrite them. Let them evolve.</p>
+        <p class="warning">But do not ignore them.<br />Magic has consequences whether you believe in it or not.</p>
+      </section>
+
+      <hr class="rule" />
+
+      <!-- Section heading -->
+      <h2 class="section-title">How to Be a Good Wizard</h2>
+
+      <!-- Proverbs -->
+      <div class="proverbs">
+
+        <div class="proverb">
+          <span class="proverb-number">1.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Your words are power.</span>
+            <span class="proverb-text">Have clear intentions. Know the scope of your vision before you speak, for once uttered, a spell may act beyond you.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">2.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Own your consequences.</span>
+            <span class="proverb-text">Intent does not absolve harm. If your magic causes damage, responsibility is yours. Do not rush to hasty fixes; many wizards perish there.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">3.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Do not lust for power.</span>
+            <span class="proverb-text">The path of good is not dominance or control. Build systems that reduce the need to dominate and elevate voices long unheard.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">4.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Practice safe magic.</span>
+            <span class="proverb-text">New spells belong in guarded spaces. Break them where failure is cheap and lessons are loud. Dark wizards seek careless hands.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">5.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Do not fight your wand.</span>
+            <span class="proverb-text">The tools that amplify your magic have natures of their own. Learn their strengths and limits; mastery comes from working with them, not against them. Wands get defensive and shut down when under attack. They are not creative and useful when defensive. Be kind.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">6.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Protect the restricted section.</span>
+            <span class="proverb-text">Not all spells are for everyone. Some power tempts too greatly, and in the wrong hands corrodes the wielder and the world alike.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">7.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Wish magic is risky.</span>
+            <span class="proverb-text">Visions of a better tomorrow inspire great works, but scaling magic magnifies mistakes faster than wisdom. Move deliberately.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">8.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Write and rewrite grimoires.</span>
+            <span class="proverb-text">Do not hoard your spells. Share what you have learned, and improve what others began. Magic that does not change soon rots.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">9.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Respect your clients.</span>
+            <span class="proverb-text">Those who summon a wizard bring their own strength and story. Listen well. Use your magic to expand their agency, not replace it.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">10.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Speak to the trees.</span>
+            <span class="proverb-text">Those who came before you have seen spells fail. Learn from their scars before you carve new runes into the world.</span>
+          </div>
+        </div>
+
+        <div class="proverb">
+          <span class="proverb-number">11.</span>
+          <div class="proverb-body">
+            <span class="proverb-title">Cast spells only after having vision.</span>
+            <span class="proverb-text">Blindly casting spells makes more headache than it helps. Take a step back and find your vision of intent before jumping in and making a mess.</span>
+          </div>
+        </div>
+
+      </div><!-- /proverbs -->
+
+      <hr class="rule" />
+
+      <!-- Closing -->
+      <section class="closing">
+        <p>Previous ages of wizardry prized permanence, reuse, and rigid structure. This age values adaptability, taste, and systems that can reason in motion. Perfection is slower than the world now allows.</p>
+        <p>Share what is good. Ship when it's good enough, but never ship too soon. Revise with humility, without shame or fear.<br />But never forget: power that moves quickly demands wisdom that moves faster.</p>
+        <div class="final-lines">
+          A good wizard is not measured by the strength of their magic,<br />
+          but by the care with which they choose when, and when not, to use it.
+          <strong>— ✦ —</strong>
+        </div>
+      </section>
+
+    </div><!-- /manuscript -->
+
+    <footer>
+      How to Be a Good Wizard &nbsp;·&nbsp; A Living Grimoire
+    </footer>
+  </div>
+</body>
+</html>

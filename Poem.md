@@ -101,3 +101,7 @@ But never forget: power that moves quickly demands wisdom that moves faster.
 
 *A good wizard is not measured by the strength of their magic,
 but by the care with which they choose when, and when not, to use it.*
+
+---
+
+*Simon Mikulcik — February 27, 2026*
